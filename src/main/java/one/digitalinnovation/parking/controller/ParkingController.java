@@ -1,8 +1,6 @@
 package one.digitalinnovation.parking.controller;
 
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
-import jdk.jfr.Description;
 import one.digitalinnovation.parking.dto.ParkingCreateDTO;
 import one.digitalinnovation.parking.dto.ParkingDTO;
 import one.digitalinnovation.parking.model.Parking;
@@ -44,6 +42,7 @@ public class ParkingController {
     }
 
     @PostMapping
+    @Operation(description = "Create parking")
     public ResponseEntity<ParkingDTO> create(@RequestBody ParkingCreateDTO dto) {
         var parkingCreate = parkingMapper.toParkingCreate(dto);
         Parking parking = parkingService.create(parkingCreate);
@@ -51,4 +50,30 @@ public class ParkingController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
+
+    @PutMapping("/{id}")
+    @Operation(description = "Update parking")
+    public ResponseEntity<ParkingDTO> update(@PathVariable String id, @RequestBody ParkingCreateDTO dto) {
+        var parkingCreate = parkingMapper.toParkingCreate(dto);
+        var parking = parkingService.update(id, parkingCreate);
+        var result = parkingMapper.toParkingDTO(parking);
+
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
+
+    @DeleteMapping("/{id}")
+    @Operation(description = "Delete parking")
+    public ResponseEntity delete(@PathVariable String id) {
+        parkingService.delete(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    /*@PostMapping("/{id}")
+    @Operation(description = "Checkout parking")
+    public ResponseEntity<ParkingDTO> exit(@PathVariable String id) {
+        Parking parking = parkingService.exit(id);
+
+        return ResponseEntity.ok(parkingMapper.toParkingDTO(parking));
+    }*/
 }

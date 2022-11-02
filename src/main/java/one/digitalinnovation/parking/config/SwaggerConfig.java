@@ -20,27 +20,13 @@ public class SwaggerConfig {
         contact.setName("Walison Miranda");
         contact.setUrl("https://github.com/WalisonMiranda");
 
-        Server localServer = new Server();
-        localServer.setUrl("http://localhost:8000");
-        localServer.setDescription("Server URL in Local environment");
-
-        Server productionServer = new Server();
-        productionServer.setUrl("https://parking-spring-wm.herokuapp.com");
-        productionServer.setDescription("Server URL in Production environment");
-
-        License mitLicense = new License()
-                .name("MIT License")
-                .url("https://choosealicense.com/licenses/mit/");
-
         Info info = new Info()
                 .title("Parking REST API")
                 .contact(contact)
                 .version("1.0.0")
-                .description("Spring Boot REST API for Parking")
-                .license(mitLicense);
+                .description("Spring Boot REST API for Parking");
 
         return new OpenAPI()
-                .info(info)
-                .servers(List.of(localServer, productionServer));
+                .info(info);
     }
 }
