@@ -1,4 +1,4 @@
-package one.digitalinnovation.parking.controller;
+package one.digitalinnovation.parking;
 
 import io.swagger.v3.oas.annotations.Operation;
 import one.digitalinnovation.parking.dto.ParkingCreateDTO;
@@ -69,11 +69,11 @@ public class ParkingController {
         return ResponseEntity.noContent().build();
     }
 
-    /*@PostMapping("/{id}")
+    @PostMapping("/{id}")
     @Operation(description = "Checkout parking")
-    public ResponseEntity<ParkingDTO> exit(@PathVariable String id) {
-        Parking parking = parkingService.exit(id);
+    public ResponseEntity<ParkingDTO> checkout(@PathVariable String id) {
+        Parking parking = parkingService.checkout(id);
 
         return ResponseEntity.ok(parkingMapper.toParkingDTO(parking));
-    }*/
+    }
 }

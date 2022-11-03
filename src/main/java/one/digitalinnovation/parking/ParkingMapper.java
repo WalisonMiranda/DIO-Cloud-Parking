@@ -1,4 +1,4 @@
-package one.digitalinnovation.parking.controller;
+package one.digitalinnovation.parking;
 
 import one.digitalinnovation.parking.dto.ParkingCreateDTO;
 import one.digitalinnovation.parking.dto.ParkingDTO;

@@ -6,38 +6,37 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ParkingControllerTest {
+class ParkingControllerTest extends AbstractContainerBase {
 
     @LocalServerPort
     private int randomPort;
 
     @BeforeEach
     public void setUpTest() {
+
         RestAssured.port = randomPort;
     }
 
     @Test
     void whenFindAllThenCheckResult() {
-
         RestAssured.given()
                 .when()
                 .get("/parking")
                 .then()
-                .statusCode(200);
+                .statusCode(HttpStatus.OK.value());
     }
 
     @Test
     void whenCreateThenCheckIsCreated() {
-
         var createDTO = new ParkingCreateDTO();
-        createDTO.setLicense("HMS-2022");
-        createDTO.setColor("ROXO");
-        createDTO.setModel("BMW I6");
+        createDTO.setColor("BRANCO");
+        createDTO.setLicense("KSY-2376");
+        createDTO.setModel("FIAT UNO");
         createDTO.setState("MG");
 
         RestAssured.given()
@@ -47,6 +46,7 @@ public class ParkingControllerTest {
                 .post("/parking")
                 .then()
                 .statusCode(HttpStatus.CREATED.value())
-                .body("license", Matchers.equalTo("HMS-2022"));
+                .body("license", Matchers.equalTo("KSY-2376"))
+                .body("color", Matchers.equalTo("BRANCO"));
     }
 }
