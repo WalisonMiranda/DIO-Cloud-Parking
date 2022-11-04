@@ -1,8 +1,8 @@
-package one.digitalinnovation.parking;
+package one.digitalinnovation.parking.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
-import one.digitalinnovation.parking.dto.ParkingCreateDTO;
-import one.digitalinnovation.parking.dto.ParkingDTO;
+import one.digitalinnovation.parking.controller.dto.ParkingCreateDTO;
+import one.digitalinnovation.parking.controller.dto.ParkingDTO;
 import one.digitalinnovation.parking.model.Parking;
 import one.digitalinnovation.parking.service.ParkingService;
 import org.springframework.http.HttpStatus;
